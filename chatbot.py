@@ -125,7 +125,7 @@ llm = ChatOllama(model=MODEL, temperature=0.7)
 memory = ConversationBufferMemory(memory_key='chat_history', return_messages=True)
 
 # The retriever is an abstraction over the VectorStore that will be used during RAG
-retriever = vectorstore.as_retriever()  # Ensure `vectorstore` is properly defined
+retriever = vectorstore.as_retriever(search_kargs={"k":25})  # Ensure `vectorstore` is properly defined
 
 # Putting it together: set up the conversation chain with Ollama LLM, the vector store, and memory
 conversation_chain = ConversationalRetrievalChain.from_llm(llm=llm, retriever=retriever, memory=memory)
@@ -149,6 +149,7 @@ conversation_chain = ConversationalRetrievalChain.from_llm(llm=llm, retriever=re
 
 def chat(message, history):
     result = conversation_chain.invoke({"question": message})
+    print(result)
     return result["answer"]
 
 
