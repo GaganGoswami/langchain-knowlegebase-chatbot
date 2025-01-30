@@ -5,13 +5,12 @@ import gradio as gr
 
 # imports for langchain
 
-from langchain.document_loaders import DirectoryLoader, TextLoader
+from langchain_community.document_loaders import DirectoryLoader, TextLoader
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.schema import Document
 from openai import OpenAI
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
-from langchain_ollama import OllamaEmbeddings,ChatOllama
-#from langchain_ollama import ChatOllama
+from langchain_ollama import OllamaEmbeddings, ChatOllama
 from langchain_chroma import Chroma
 import numpy as np
 from sklearn.manifold import TSNE
